@@ -58,21 +58,21 @@ class Tokenizer:
         self.source_code = source_code
 
     def get_tokens_as_string(self) -> str:
-        """Get tokens as comma-separated string"""
-        input_stream = InputStream(self.source_code)
-        lexer = TyCLexer(input_stream)
-        token_stream = CommonTokenStream(lexer)
-        token_stream.fill()
+     input_stream = InputStream(self.source_code)
+     lexer = TyCLexer(input_stream)
+     token_stream = CommonTokenStream(lexer)
+     token_stream.fill()
 
-        tokens = []
-        for token in token_stream.tokens:
-            if token.type != -1:  # EOF
-                token_name = lexer.symbolicNames[token.type]
-                token_text = token.text if token.text else ""
-                tokens.append(f"{token_name},{token_text}")
+     tokens = []
+     for token in token_stream.tokens:
+        if token.type != -1:  # EOF
+            token_name = lexer.symbolicNames[token.type]
+            token_text = token.text if token.text else ""
+            tokens.append(f"{token_name},{token_text}")
 
-        tokens.append("EOF")
-        return ",".join(tokens)
+     tokens.append("EOF")
+     return ",".join(tokens)
+
 
 
 class Parser:
